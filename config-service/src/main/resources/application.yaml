@@ -7,7 +7,7 @@ spring:
         git:
           default-label: config-server
           uri: https://github.com/IsaacCRS17/MICROSERVICIOS-SPRINGBOOT
-          search-path: config-data
+          search-paths: config-data
   application:
     name: config-service
 
