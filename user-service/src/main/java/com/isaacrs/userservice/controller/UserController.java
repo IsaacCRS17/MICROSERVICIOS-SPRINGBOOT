@@ -12,12 +12,13 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     UserService userService;
 
     // Obtiene todos los usuarios
-    @GetMapping("/user")
+    @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getAll();
         if (users.isEmpty())
@@ -26,7 +27,7 @@ public class UserController {
     }
 
     // Obtiene un usuario por su ID
-    @GetMapping("/user/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable("id") int id) {
         User user = userService.getUserById(id);
         if (user == null)
@@ -35,7 +36,7 @@ public class UserController {
     }
 
     // Crea un nuevo usuario
-    @PostMapping("/user")
+    @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
         User userNew = userService.save(user);
         if (userNew == null)
@@ -44,7 +45,7 @@ public class UserController {
     }
 
     // Obtiene todos los coches de un usuario por su ID
-    @GetMapping("/user/cars/{userId}")
+    @GetMapping("/cars/{userId}")
     public ResponseEntity<List<Car>> getCarsByUserId(@PathVariable("userId") int userId) {
         User user = userService.getUserById(userId);
         if (user == null) {
@@ -55,7 +56,7 @@ public class UserController {
     }
 
     // Obtiene todas las bicicletas de un usuario por su ID
-    @GetMapping("/user/bikes/{userId}")
+    @GetMapping("/bikes/{userId}")
     public ResponseEntity<List<Bike>> getBikesByUserId(@PathVariable("userId") int userId) {
         User user = userService.getUserById(userId);
         if (user == null) {
@@ -65,7 +66,7 @@ public class UserController {
         return ResponseEntity.ok(bikes);
     }
     // Crea un nuevo car al usuario
-    @PostMapping("/user/savecar/{userId}")
+    @PostMapping("/savecar/{userId}")
     public ResponseEntity<Car> saveCar(@PathVariable("userId") int userId, @RequestBody Car car){
         if(userService.getUserById(userId) == null) {
             return ResponseEntity.notFound().build();
@@ -74,7 +75,7 @@ public class UserController {
         return ResponseEntity.ok(carNew);
     }
     // Crea una nueva bike al usuario
-    @PostMapping("/user/savebike/{userId}")
+    @PostMapping("/savebike/{userId}")
     public ResponseEntity<Bike> saveBike(@PathVariable("userId") int userId, @RequestBody Bike bike){
         if(userService.getUserById(userId) == null) {
             return ResponseEntity.notFound().build();
@@ -83,7 +84,7 @@ public class UserController {
         return ResponseEntity.ok(bikeNew);
     }
     // Obtiene todas las bicicletas y carros de un usuario por su ID
-    @GetMapping("/user/getAll/{userId}")
+    @GetMapping("/getAll/{userId}")
     public ResponseEntity<Map<String, Object>> getAllVehicles(@PathVariable("userId") int userId){
         Map<String, Object> result = userService.getUserAndVehicles(userId);
         return ResponseEntity.ok(result);
