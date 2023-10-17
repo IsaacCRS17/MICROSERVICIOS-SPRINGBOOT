@@ -12,9 +12,9 @@ import java.util.List;
 @FeignClient(name = "car-service")
 public interface CarFeignClient {
 
-    @PostMapping
+    @PostMapping("/car")
     Car save(@RequestBody Car car);
 
-    @GetMapping("/byuser/{userId}")
+    @GetMapping("/car/byuser/{userId}")
     List<Car> getCars(@PathVariable("userId") int userId);
 }

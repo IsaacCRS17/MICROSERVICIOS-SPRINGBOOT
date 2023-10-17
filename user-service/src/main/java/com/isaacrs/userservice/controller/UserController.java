@@ -68,11 +68,8 @@ public class UserController {
     @PostMapping("/user/savecar/{userId}")
     public ResponseEntity<Car> saveCar(@PathVariable("userId") int userId, @RequestBody Car car){
         if(userService.getUserById(userId) == null) {
-            System.out.println("No Encontró el usuario");
             return ResponseEntity.notFound().build();
         }
-        System.out.println("Encontró el usuario");
-
         Car carNew = userService.saveCar(userId, car);
         return ResponseEntity.ok(carNew);
     }

@@ -92,7 +92,6 @@ public class UserService {
      * @return Coche guardado.
      */
     public Car saveCar(int userId, Car car) {
-        System.out.println("Va a ir al servicio del car");
         car.setUserId(userId);
         Car carNew = carFeignClient.save(car);
         return carNew;
