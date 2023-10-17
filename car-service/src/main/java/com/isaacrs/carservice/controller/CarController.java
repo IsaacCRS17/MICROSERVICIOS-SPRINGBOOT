@@ -9,11 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/car")
 public class CarController {
     @Autowired
     CarService carService;
-    @GetMapping
+    @GetMapping("/car")
     public ResponseEntity<List<Car>> getAll(){
         List<Car> cars = carService.getAll();
         if (cars.isEmpty())
@@ -21,7 +20,7 @@ public class CarController {
         return ResponseEntity.ok(cars);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/car/{id}")
     public ResponseEntity<Car> getById(@PathVariable("id") int id){
         Car car = carService.getUserById(id);
         if (car==null)
@@ -29,7 +28,7 @@ public class CarController {
         return ResponseEntity.ok(car);
     }
 
-    @PostMapping
+    @PostMapping("/car")
     public ResponseEntity<Car> save(@RequestBody Car car){
         Car carNew = carService.save(car);
         if (carNew==null)
@@ -37,7 +36,7 @@ public class CarController {
         return ResponseEntity.ok(carNew);
     }
 
-    @GetMapping("/byuser/{userId}")
+    @GetMapping("/car/byuser/{userId}")
     public ResponseEntity<List<Car>> getByUserId(@PathVariable("userId") int userId){
         List<Car> cars = carService.byUserId(userId);
         return ResponseEntity.ok(cars);

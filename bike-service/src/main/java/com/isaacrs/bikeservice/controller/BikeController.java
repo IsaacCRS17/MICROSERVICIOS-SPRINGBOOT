@@ -9,11 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/bike")
 public class BikeController {
     @Autowired
     BikeService bikeService;
-    @GetMapping
+    @GetMapping("/bike")
     public ResponseEntity<List<Bike>> getAll(){
         List<Bike> bikes = bikeService.getAll();
         if (bikes.isEmpty())
@@ -21,7 +20,7 @@ public class BikeController {
         return ResponseEntity.ok(bikes);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/bike/{id}")
     public ResponseEntity<Bike> getById(@PathVariable("id") int id){
         Bike bike = bikeService.getUserById(id);
         if (bike==null)
@@ -29,7 +28,7 @@ public class BikeController {
         return ResponseEntity.ok(bike);
     }
 
-    @PostMapping
+    @PostMapping("/bike")
     public ResponseEntity<Bike> save(@RequestBody Bike bike){
         Bike bikeNew = bikeService.save(bike);
         if (bikeNew==null)
@@ -37,7 +36,7 @@ public class BikeController {
         return ResponseEntity.ok(bikeNew);
     }
 
-    @GetMapping("/byuser/{userId}")
+    @GetMapping("/bike/byuser/{userId}")
     public ResponseEntity<List<Bike>> getByUserId(@PathVariable("userId") int userId){
         List<Bike> bikes = bikeService.byUserId(userId);
         return ResponseEntity.ok(bikes);

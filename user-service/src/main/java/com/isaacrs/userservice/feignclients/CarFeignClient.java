@@ -11,6 +11,7 @@ import java.util.List;
 
 @FeignClient(name = "car-service")
 public interface CarFeignClient {
+
     @PostMapping
     Car save(@RequestBody Car car);
 
