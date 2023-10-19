@@ -5,7 +5,7 @@ spring:
     config:
       server:
         git:
-          default-label: gateway
+          default-label: resilience4j
           uri: https://github.com/IsaacCRS17/MICROSERVICIOS-SPRINGBOOT
           search-paths: config-data
   application:
