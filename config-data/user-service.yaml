@@ -43,3 +43,7 @@ management:
   tracing:
     sampling:
       probability: 1.0
+
+spring:
+  application:
+    zipkin: http://localhost:9411
